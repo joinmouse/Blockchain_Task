@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sort"
 	"strconv"
 )
 
@@ -86,10 +87,88 @@ func longestCommonPrefix(strs []string) string {
 	return prefix
 }
 
+// 26.删除有序数组中的重复项 https://leetcode.cn/problems/remove-duplicates-from-sorted-array/
+func removeDuplicates(nums []int) int {
+    if len(nums) == 0 {
+        return 0
+    }
+    i := 0
+	// 遍历数组，如果当前元素与前一个元素不相同，则将当前元素赋值给nums[i]
+    for j := 1; j < len(nums); j++ {
+        if nums[j] != nums[i] {
+            i++
+            nums[i] = nums[j]
+        }
+    }
+    // 截断数组，移除重复项
+    nums = nums[:i+1]
+    return i + 1
+}
+
+// 66 加一 https://leetcode.cn/problems/plus-one/
+func plusOne(digits []int) []int {
+	// 从后往前遍历数组, 如果当前元素小于9, 则加一, 并返回
+	for i := len(digits) - 1; i >= 0; i-- {
+		// 如果当前元素小于9，则加一，并返回
+		if digits[i] < 9 {
+			digits[i]++
+			return digits
+		}
+		// 如果当前元素等于9，则将当前元素赋值为0
+		digits[i] = 0
+	}
+	// 如果遍历完数组, 则说明数组所有元素都为9, 则需要扩容, 在数组最前面插入1
+	digits = append([]int{1}, digits...)
+	return digits
+}
+
+// 56. 合并区间 https://leetcode.cn/problems/merge-intervals/
+func merge(intervals [][]int) [][]int {
+    if len(intervals) == 0 {
+        return intervals
+    }
+    
+    // 按起始位置排序
+    sort.Slice(intervals, func(i, j int) bool {
+        return intervals[i][0] < intervals[j][0]
+    })
+    
+    result := [][]int{intervals[0]}
+	// 遍历区间, 如果当前区间的起始位置小于等于前一个区间的结束位置, 则合并, 否则直接添加到结果数组中
+    for i := 1; i < len(intervals); i++ {
+        last := result[len(result)-1]
+		// 如果当前区间的起始位置小于等于前一个区间的结束位置, 则合并, 否则直接添加到结果数组中
+        if intervals[i][0] <= last[1] {
+            if intervals[i][1] > last[1] {
+                last[1] = intervals[i][1]
+            }
+        } else {
+            result = append(result, intervals[i])
+        }
+    }
+    return result
+}
+
+// 1. 两数之和 https://leetcode.cn/problems/two-sum/
+func twoSum(nums []int, target int) []int {
+	mapNum := make(map[int]int)
+	for i, num := range nums {
+		if val, ok := mapNum[target-num]; ok {
+			return []int{val, i}
+		}
+		mapNum[num] = i
+	}
+	return nil
+}
+
 func main() {
 	fmt.Println("task01")
 	fmt.Println(singleNumber([]int{4, 1, 2, 1, 2}))  // 测试只出现一次的数字
 	fmt.Println(isPalindrome(121))  // 测试回文数
 	fmt.Println(isValid("()[]{}"))  // 测试有效括号
 	fmt.Println(longestCommonPrefix([]string{"flower", "flow", "flight"})) // 测试最长公共前缀
+	fmt.Println(removeDuplicates([]int{1, 1, 2})) // 测试删除重复项
+	fmt.Println(plusOne([]int{1, 2, 3})) // 测试加一
+	fmt.Println(merge([][]int{{1, 4}, {2, 5}, {3, 6}})) // 测试合并区间
+	fmt.Println(twoSum([]int{2, 7, 11, 15}, 9)) // 测试两数之和
 }
