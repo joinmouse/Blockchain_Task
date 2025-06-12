@@ -11,18 +11,13 @@
 
 ## 依赖安装步骤
 
-1. **克隆项目**：
-   ```bash
-   git clone <your-repo-url>
-   cd <your-project-directory>
-   ```
 
-2. **初始化 Go 模块**（如果尚未初始化）：
+1. **初始化 Go 模块**（如果尚未初始化）：
    ```bash
    go mod init <your-module-name>
    ```
 
-3. **安装依赖**：
+2. **安装依赖**：
    ```bash
    go get -u github.com/gin-gonic/gin
    go get -u gorm.io/gorm

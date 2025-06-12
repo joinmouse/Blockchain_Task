@@ -3,6 +3,7 @@ package controllers
 import (
 	"blog/models"
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
@@ -30,7 +31,12 @@ func (pc *CommentController) CreateComment(c *gin.Context) {
 
     // 获取文章ID
     postID := c.Param("id")
-    comment.PostID = postID
+	id, err := strconv.Atoi(postID)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+        return
+	}
+    comment.PostID = uint(id)
 
     // 创建评论
     if err := pc.DB.Create(&comment).Error; err != nil {
