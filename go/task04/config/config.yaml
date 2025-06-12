@@ -1,0 +1,16 @@
+database:
+  driver: mysql
+  host: 127.0.0.1
+  port: 3306
+  user: root
+  password: 12345abc
+  dbname: blog
+  charset: utf8mb4
+  parseTime: true
+  loc: Local
+
+server:
+  port: 8080
+  mode: debug  # debug or release 
+
+secret_key: 3f3c8e1b2d4e5f6a7b8c9d0e1f2a3b4c
