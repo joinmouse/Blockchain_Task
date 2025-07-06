@@ -1,5 +1,5 @@
 import React from "react";
-import { useAccount, useChains, useSwitchChain } from "wagmi";
+import { useAccount, useSwitchChain } from "wagmi";
 
 export const NetworkSwitcher: React.FC = () => {
   const { chain, chainId, isConnected } = useAccount();
