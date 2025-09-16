@@ -1,11 +1,12 @@
 import { network } from "hardhat";
 
+console.log("Sending transaction using the OP chain type");
+
+// 连接到 Hardhat 的 Optimism 网络配置
 const { viem } = await network.connect({
   network: "hardhatOp",
   chainType: "op",
 });
-
-console.log("Sending transaction using the OP chain type");
 
 const publicClient = await viem.getPublicClient();
 const [senderClient] = await viem.getWalletClients();
