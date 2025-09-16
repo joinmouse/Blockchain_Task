@@ -18,5 +18,8 @@
     "test": "hardhat test",
     "deploy:local": "hardhat run scripts/deploy-local.ts",
     "deploy:op": "hardhat run scripts/send-op-tx.ts"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.4.0"
   }
 }
