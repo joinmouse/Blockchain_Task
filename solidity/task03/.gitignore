@@ -19,3 +19,5 @@ ignition/deployments/chain-31337
 # compile
 artifacts
 .env
+.states
+generated
