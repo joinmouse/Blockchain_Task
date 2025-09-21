@@ -1,10 +1,9 @@
 import type { HardhatUserConfig } from "hardhat/config";
-import hardhatToolboxViemPlugin from "@nomicfoundation/hardhat-toolbox-viem";
 import { configVariable } from "hardhat/config";
-import hardhatDeployPlugin from "hardhat-deploy";
+import hardhatToolboxViemPlugin from "@nomicfoundation/hardhat-toolbox-viem";
 
 const config: HardhatUserConfig = {
-  plugins: [hardhatToolboxViemPlugin, hardhatDeployPlugin],
+  plugins: [hardhatToolboxViemPlugin],
   solidity: {
     profiles: {
       default: {
