@@ -24,6 +24,7 @@
     "test:solidity": "pnpm hardhat test solidity",
     "test:node": "pnpm hardhat test nodejs",
     "test": "hardhat test",
-    "deploy": "hardhat ignition deploy --network localhost ignition/modules/NftAuction.ts"
+    "deploy": "hardhat ignition deploy --network localhost ignition/modules/NftAuction.ts",
+    "deploy:nft": "hardhat run scripts/deploy-proxy.ts"
   }
 }

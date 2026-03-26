@@ -28,7 +28,12 @@ contract NftAuction is Initializable {
     address public admin;
 
     constructor() {
-        admin = msg.sender;
+        _disableInitializers(); // 禁用初始化器，防止被误调用
+    }
+
+    // 初始化函数（替代构造函数）
+    function initialize() external initializer {
+        admin = msg.sender; // 设置部署者为管理员
     }
 
     // 创建拍卖

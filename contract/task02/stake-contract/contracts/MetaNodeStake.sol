@@ -161,7 +161,7 @@ contract MetaNodeStake is
         require(_startBlock <= _endBlock && _MetaNodePerBlock > 0, "invalid parameters");
 
         __AccessControl_init();
-        __UUPSUpgradeable_init();
+        __Pausable_init();
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _grantRole(UPGRADE_ROLE, msg.sender);
         _grantRole(ADMIN_ROLE, msg.sender);
